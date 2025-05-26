@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Web;
 
 namespace Secret_Messages___Atbash_Cipher_Writer
 {
@@ -60,10 +61,15 @@ namespace Secret_Messages___Atbash_Cipher_Writer
 
         }
 
-        static void SaveInFile(string message)
+        static void SaveInFile(string message,string path)
         {
-            string path = "message.txt";
             File.WriteAllText(path, message);
+        }
+
+        static string ReadFromFile(string path)
+        {
+            string content = File.ReadAllText(path);
+            return content;
         }
 
 
@@ -73,7 +79,11 @@ namespace Secret_Messages___Atbash_Cipher_Writer
             string input = Console.ReadLine();
 
             string encrypted = Atbash(input);
-            SaveInFile(encrypted);
+            SaveInFile(encrypted,"message.txt");
+            string read = ReadFromFile("message.txt");
+            string decrypted = Atbash(read);
+            Console.WriteLine(decrypted);
+
 
         }
     }
