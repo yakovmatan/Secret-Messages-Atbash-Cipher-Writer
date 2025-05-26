@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Secret_Messages___Atbash_Cipher_Writer
 {
     internal class Program
     {
-        static string Encrypt(string message)
+        static string Atbash(string message)
         {
 
             string decrypted = "";
@@ -59,16 +60,21 @@ namespace Secret_Messages___Atbash_Cipher_Writer
 
         }
 
+        static void SaveInFile(string message)
+        {
+            string path = "message.txt";
+            File.WriteAllText(path, message);
+        }
+
 
         static void Main(string[] args)
         {
             Console.WriteLine("Enter a message to encrypt:");
             string input = Console.ReadLine();
 
-            string encrypted = Encrypt(input);
+            string encrypted = Atbash(input);
+            SaveInFile(encrypted);
 
-            Console.WriteLine("Encrypted message:");
-            Console.WriteLine(encrypted);
         }
     }
 }
